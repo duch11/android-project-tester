@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="buttonsize" type="dimen">80%</item>
+</resources>
