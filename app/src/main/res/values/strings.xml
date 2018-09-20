@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Lab02</string>
     <string name="ButtonLabel">Calculate</string>
+    <string name="one_label">1</string>
+    <string name="two_label">2</string>
+    <string name="three_label">3</string>
+    <string name="four_label">4</string>
+    <string name="five_label">5</string>
+    <string name="six_label">6</string>
+    <string name="seven_label">7</string>
+    <string name="eight_label">8</string>
+    <string name="nine_label">9</string>
+
 
 
 </resources>

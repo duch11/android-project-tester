@@ -7,7 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
+public class MainActivity extends AppCompatActivity {
+
+    ArrayList<Button> numberButtons = new ArrayList<Button>();
+    HashMap<String,Button> normalButtons = new HashMap<String, Button>();
+    private String displayString;
+    TextView display;
+    Button button0;
+    Button button1;
+    Button button2;
+    Button button3;
+    ArrayList<View.OnClickListener> buttonHandlers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,20 +29,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //this line is what instanciates the R, therefore findviewbyid( .. ), wont work before this.
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.button);
+        displayString = "0";
+        display = findViewById(R.id.myTextView);
 
-        //made this class an onclick listener, therefore the "this" keyword.
-        button.setOnClickListener(this);
+
+
+
+
+        for(final ButtonNo buttonNo : ButtonNo.values()){
+            buttonHandlers.add(new View.OnClickListener() {
+                public void onClick(View v) {
+                    setText(buttonNo);
+                }
+            });
+
+
+        }
+        button0 = findViewById(R.id.button0);
+        button0.setOnClickListener(buttonHandlers.get(0));
+
+        button1 = findViewById(R.id.button1);
+        button1.setOnClickListener(buttonHandlers.get(1));
+
+        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(buttonHandlers.get(2));
+
+        button3 = findViewById(R.id.button3);
+        button3.setOnClickListener(buttonHandlers.get(3));
+
     }
 
-    @Override
-    public void onClick(View v) {
-        TextView textView = findViewById(R.id.hello);
-        EditText editText = findViewById(R.id.editText);
 
-        int meters = Integer.parseInt(editText.getText().toString());
-        float inches = meters * 100 / 2.5f;
+/*
+    View.OnClickListener buttonHandler1 = new View.OnClickListener() {
+        public void onClick(View v) {
+           setText(ButtonNo.BTN1);
+        }
+    };
+*/
 
-        textView.setText(meters+" meters is "+inches+" Inches");
+
+    private void setText(ButtonNo buttonNo){
+        checkForZero();
+        displayString += buttonNo.toString();
+        display.setText(displayString);
     }
+
+    private void checkForZero(){
+        if(displayString.startsWith("0")){
+            displayString = "";
+        }
+    }
+
+
+
 }
